@@ -6,69 +6,62 @@ import StarRating from './ui/StarRating';
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 
-  const handleAddToCart = () => {
-    addToCart(product);
-  };
-
   return (
-    <div className="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-      {/* Image Container */}
-      <div className="relative overflow-hidden">
+    <div className="group bg-white rounded-xl border border-slate-200/80 overflow-hidden flex flex-col transition-all duration-200 hover:shadow-md hover:border-slate-300">
+      {/* Image */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-[1.03]"
+          loading="lazy"
         />
 
         {/* Badges */}
-        <div className="absolute top-3 right-3 flex flex-col gap-1.5">
-          {product.stock < 10 && (
-            <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
-              Low Stock
-            </span>
-          )}
-          {product.rating >= 4.5 && (
-            <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700">
-              Best Seller
-            </span>
-          )}
-        </div>
+        {(product.stock < 10 || product.rating >= 4.5) && (
+          <div className="absolute top-2.5 left-2.5 flex flex-col gap-1">
+            {product.stock < 10 && (
+              <span className="inline-flex px-2 py-0.5 text-[11px] font-medium rounded-md bg-amber-50 text-amber-700 border border-amber-200/60">
+                Low Stock
+              </span>
+            )}
+            {product.rating >= 4.5 && (
+              <span className="inline-flex px-2 py-0.5 text-[11px] font-medium rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                Best Seller
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-4">
-        {/* Category */}
-        <span className="text-xs font-medium text-indigo-600 uppercase tracking-wide mb-1">
+      <div className="flex flex-col flex-1 p-4 gap-1.5">
+        <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
           {product.category}
         </span>
 
-        {/* Title */}
-        <h3 className="text-base font-semibold text-slate-900 mb-2 line-clamp-1">
+        <h3 className="text-sm font-medium text-slate-900 leading-snug line-clamp-1">
           {product.name}
         </h3>
 
-        {/* Rating */}
-        <div className="mb-3">
-          <StarRating rating={product.rating} />
-        </div>
+        <StarRating rating={product.rating} />
 
-        {/* Price & Stock */}
-        <div className="flex items-center justify-between mt-auto mb-4">
-          <p className="text-xl font-bold text-slate-900">
+        {/* Price & Stock row — pushed to bottom */}
+        <div className="flex items-baseline justify-between mt-auto pt-3">
+          <span className="text-lg font-semibold text-slate-900 tabular-nums tracking-tight">
             ${product.price.toFixed(2)}
-          </p>
-          <p className="text-xs text-slate-500">
-            {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
-          </p>
+          </span>
+          <span className="text-[11px] text-slate-400 tabular-nums">
+            {product.stock > 0 ? `${product.stock} left` : 'Sold out'}
+          </span>
         </div>
 
-        {/* Add to Cart Button */}
         <button
-          onClick={handleAddToCart}
+          onClick={() => addToCart(product)}
           disabled={product.stock === 0}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 bg-indigo-600 text-white hover:bg-indigo-700 active:scale-[0.98] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed"
+          className="btn-primary mt-2 w-full text-[13px] py-2"
         >
-          <ShoppingCart className="w-4 h-4" />
+          <ShoppingCart className="w-3.5 h-3.5" />
           {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
         </button>
       </div>

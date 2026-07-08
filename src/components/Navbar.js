@@ -11,7 +11,6 @@ import {
   LogOut,
   Menu,
   X,
-  Store,
 } from 'lucide-react';
 
 const navLinks = [
@@ -37,53 +36,45 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const linkClasses = (path) =>
+    `flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors duration-150 ${
+      isActive(path)
+        ? 'text-slate-900 bg-slate-100'
+        : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+    }`;
+
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
+    <header className="sticky top-0 z-50 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
           {/* Brand */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center group-hover:bg-indigo-700 transition-colors">
-              <Store className="w-5 h-5 text-white" />
+          <Link to="/" className="flex items-center gap-2.5 select-none">
+            <div className="w-7 h-7 rounded-md bg-slate-900 flex items-center justify-center">
+              <span className="text-white text-xs font-bold tracking-tight">EC</span>
             </div>
-            <span className="text-lg font-bold text-slate-900 hidden sm:block">
-              E-Commerce Store
+            <span className="text-sm font-semibold text-slate-900 hidden sm:block tracking-tight">
+              E-Commerce
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-0.5">
             {navLinks.map(({ to, label, icon: Icon }) => (
-              <Link
-                key={to}
-                to={to}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive(to)
-                    ? 'bg-indigo-50 text-indigo-700'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
+              <Link key={to} to={to} className={linkClasses(to)}>
+                <Icon className="w-3.5 h-3.5" />
                 {label}
               </Link>
             ))}
-          </div>
+          </nav>
 
           {/* Right Side */}
-          <div className="flex items-center gap-2">
-            {/* Cart Button */}
-            <Link
-              to="/cart"
-              className={`relative flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                isActive('/cart')
-                  ? 'bg-indigo-50 text-indigo-700'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-              }`}
-            >
-              <ShoppingCart className="w-4 h-4" />
+          <div className="flex items-center gap-1">
+            {/* Cart */}
+            <Link to="/cart" className={`relative ${linkClasses('/cart')}`}>
+              <ShoppingCart className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Cart</span>
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">
+                <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] rounded-full bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center px-1 leading-none">
                   {cartCount}
                 </span>
               )}
@@ -92,45 +83,45 @@ const Navbar = () => {
             {/* Logout */}
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] font-medium text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors duration-150"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Logout</span>
             </button>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
-              aria-label="Toggle menu"
+              className="md:hidden ml-1 p-1.5 rounded-md text-slate-500 hover:bg-slate-100 transition-colors"
+              aria-label="Toggle navigation"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-slate-100 py-3 space-y-1">
+          <nav className="md:hidden border-t border-slate-100 py-2 space-y-0.5 pb-3">
             {navLinks.map(({ to, label, icon: Icon }) => (
               <Link
                 key={to}
                 to={to}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(to)
-                    ? 'bg-indigo-50 text-indigo-700'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'text-slate-900 bg-slate-100'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 {label}
               </Link>
             ))}
-          </div>
+          </nav>
         )}
       </div>
-    </nav>
+    </header>
   );
 };
 

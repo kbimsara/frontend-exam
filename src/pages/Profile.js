@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 import PageLayout from '../components/ui/PageLayout';
 import SectionCard from '../components/ui/SectionCard';
 import StatusBadge from '../components/ui/StatusBadge';
@@ -37,7 +38,7 @@ const Profile = () => {
 
   const handleSave = () => {
     setIsEditing(false);
-    alert('Profile updated successfully!');
+    toast.success('Profile updated successfully');
   };
 
   const orderHistory = [
@@ -54,9 +55,9 @@ const Profile = () => {
   ];
 
   const stats = [
-    { label: 'Orders', value: '12', icon: ShoppingBag, color: 'text-indigo-600' },
-    { label: 'Total Spent', value: '$2,450', icon: DollarSign, color: 'text-emerald-600' },
-    { label: 'Wishlist', value: '8', icon: Heart, color: 'text-rose-500' },
+    { label: 'Orders', value: '12', icon: ShoppingBag },
+    { label: 'Total Spent', value: '$2,450', icon: DollarSign },
+    { label: 'Wishlist', value: '8', icon: Heart },
   ];
 
   const fields = [
@@ -71,34 +72,33 @@ const Profile = () => {
 
   return (
     <PageLayout title="My Profile">
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* Sidebar */}
         <div className="lg:col-span-1 space-y-6">
           {/* Avatar Card */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 text-center">
-            <div className="relative inline-block mb-4">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold ring-4 ring-white shadow-lg">
+          <div className="bg-white rounded-xl border border-slate-200/80 p-6 text-center">
+            <div className="relative mx-auto w-20 h-20 mb-4">
+              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white text-2xl font-medium tracking-tight">
                 {user.name.charAt(0).toUpperCase()}
               </div>
+              <button className="absolute bottom-0 right-0 w-7 h-7 bg-white rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-colors shadow-sm">
+                <Camera className="w-3.5 h-3.5" />
+              </button>
             </div>
-            <h2 className="text-lg font-bold text-slate-900">{user.name}</h2>
-            <p className="text-sm text-slate-500 mt-0.5">{user.role}</p>
-            <button className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
-              <Camera className="w-4 h-4" />
-              Change Avatar
-            </button>
+            <h2 className="text-base font-semibold text-slate-900">{user.name}</h2>
+            <p className="text-[13px] text-slate-500 mt-0.5">{user.role}</p>
           </div>
 
           {/* Stats Card */}
-          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
-            {stats.map(({ label, value, icon: Icon, color }) => (
-              <div key={label} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50">
-                <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0">
-                  <Icon className={`w-5 h-5 ${color}`} />
+          <div className="bg-white rounded-xl border border-slate-200/80 p-5 space-y-4">
+            {stats.map(({ label, value, icon: Icon }) => (
+              <div key={label} className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-4 h-4 text-slate-500" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-slate-900">{value}</p>
-                  <p className="text-xs text-slate-500">{label}</p>
+                  <p className="text-[15px] font-semibold text-slate-900 tabular-nums leading-none mb-1">{value}</p>
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-slate-400 leading-none">{label}</p>
                 </div>
               </div>
             ))}
@@ -114,7 +114,7 @@ const Profile = () => {
               !isEditing ? (
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-colors"
+                  className="btn-secondary py-1.5 px-3 text-[13px]"
                 >
                   <Pencil className="w-3.5 h-3.5" />
                   Edit
@@ -122,94 +122,96 @@ const Profile = () => {
               ) : (
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={handleSave}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-colors"
-                  >
-                    <Save className="w-3.5 h-3.5" />
-                    Save
-                  </button>
-                  <button
                     onClick={() => setIsEditing(false)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+                    className="btn-secondary py-1.5 px-3 text-[13px]"
                   >
                     <X className="w-3.5 h-3.5" />
                     Cancel
+                  </button>
+                  <button
+                    onClick={handleSave}
+                    className="btn-primary py-1.5 px-3 text-[13px]"
+                  >
+                    <Save className="w-3.5 h-3.5" />
+                    Save
                   </button>
                 </div>
               )
             }
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
               {fields.map(({ name, label, type, fullWidth }) => (
                 <div key={name} className={fullWidth ? 'sm:col-span-2' : ''}>
-                  <label className="block text-sm font-medium text-slate-500 mb-1.5">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
                     {label}
                   </label>
-                  {name === 'email' && !isEditing ? (
-                    <p className="text-sm text-slate-900 py-2">{formData[name]}</p>
-                  ) : isEditing && name !== 'role' ? (
+                  {isEditing && name !== 'email' ? (
                     <input
                       type={type}
                       name={name}
                       value={formData[name]}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                      className="input-base"
                     />
                   ) : (
-                    <p className="text-sm text-slate-900 py-2">{formData[name]}</p>
+                    <p className="text-[13px] text-slate-900 font-medium py-1.5">
+                      {formData[name]}
+                    </p>
                   )}
                 </div>
               ))}
               {/* Role — always read-only */}
               <div>
-                <label className="block text-sm font-medium text-slate-500 mb-1.5">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
                   Role
                 </label>
-                <p className="text-sm text-slate-900 py-2">{user.role}</p>
+                <p className="text-[13px] text-slate-900 font-medium py-1.5">
+                  {user.role}
+                </p>
               </div>
             </div>
           </SectionCard>
 
           {/* Order History */}
           <SectionCard title="Order History">
-            <div className="overflow-x-auto -mx-6">
+            <div className="overflow-x-auto -mx-5 -mb-5 px-5 pb-5">
               <table className="w-full min-w-[500px]">
                 <thead>
-                  <tr className="border-b border-slate-100">
-                    <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide px-6 py-2">
+                  <tr>
+                    <th className="text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider pb-3 border-b border-slate-100">
                       Order
                     </th>
-                    <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide px-3 py-2">
+                    <th className="text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider pb-3 border-b border-slate-100">
                       Date
                     </th>
-                    <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide px-3 py-2">
+                    <th className="text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider pb-3 border-b border-slate-100">
                       Items
                     </th>
-                    <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide px-3 py-2">
+                    <th className="text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider pb-3 border-b border-slate-100">
                       Total
                     </th>
-                    <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide px-3 py-2">
+                    <th className="text-left text-[11px] font-semibold text-slate-400 uppercase tracking-wider pb-3 border-b border-slate-100">
                       Status
                     </th>
-                    <th className="px-3 py-2"></th>
+                    <th className="pb-3 border-b border-slate-100"></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {orderHistory.map((order) => (
-                    <tr key={order.id} className="hover:bg-slate-50 transition-colors">
-                      <td className="px-6 py-3 text-sm font-medium text-slate-900">
+                    <tr key={order.id} className="group">
+                      <td className="py-3 text-[13px] font-medium text-slate-900 pr-4">
                         #{order.id}
                       </td>
-                      <td className="px-3 py-3 text-sm text-slate-600">{order.date}</td>
-                      <td className="px-3 py-3 text-sm text-slate-600">{order.items}</td>
-                      <td className="px-3 py-3 text-sm font-semibold text-slate-900">
+                      <td className="py-3 text-[13px] text-slate-600 pr-4 tabular-nums">{order.date}</td>
+                      <td className="py-3 text-[13px] text-slate-600 pr-4 tabular-nums">{order.items}</td>
+                      <td className="py-3 text-[13px] font-medium text-slate-900 pr-4 tabular-nums">
                         ${order.total.toFixed(2)}
                       </td>
-                      <td className="px-3 py-3">
+                      <td className="py-3 pr-4">
                         <StatusBadge status={order.status} />
                       </td>
-                      <td className="px-3 py-3">
-                        <button className="p-2 rounded-lg text-slate-400 hover:bg-indigo-50 hover:text-indigo-600 transition-colors">
+                      <td className="py-3 text-right">
+                        <button className="p-1.5 rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-colors">
                           <Eye className="w-4 h-4" />
                         </button>
                       </td>
@@ -222,20 +224,23 @@ const Profile = () => {
 
           {/* Recent Activity */}
           <SectionCard title="Recent Activity">
-            <div className="space-y-1">
+            <div className="space-y-4">
               {activityLog.map((activity, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 p-3 rounded-lg hover:bg-slate-50 transition-colors"
+                  className="flex items-start gap-3 relative"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <ClipboardList className="w-4 h-4 text-indigo-600" />
+                  {index !== activityLog.length - 1 && (
+                    <div className="absolute left-[15px] top-8 bottom-[-16px] w-[2px] bg-slate-100" />
+                  )}
+                  <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-200/60 flex items-center justify-center flex-shrink-0 z-10">
+                    <ClipboardList className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-900">
+                  <div className="flex-1 min-w-0 pt-1.5">
+                    <p className="text-[13px] font-medium text-slate-900">
                       {activity.action}
                     </p>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-[11px] text-slate-500 mt-0.5 tabular-nums">
                       {activity.timestamp}
                     </p>
                   </div>

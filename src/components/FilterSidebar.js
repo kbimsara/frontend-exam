@@ -11,25 +11,24 @@ const FilterSidebar = ({
   onSortChange,
 }) => {
   return (
-    <aside className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 w-full lg:w-64 flex-shrink-0 h-fit sticky top-24">
-      {/* Header */}
-      <div className="flex items-center gap-2 mb-6">
-        <SlidersHorizontal className="w-5 h-5 text-indigo-600" />
-        <h2 className="text-base font-semibold text-slate-900">Filters</h2>
+    <aside className="bg-white rounded-xl border border-slate-200/80 p-5 w-full lg:w-60 flex-shrink-0 h-fit lg:sticky lg:top-20">
+      <div className="flex items-center gap-2 mb-5 pb-4 border-b border-slate-100">
+        <SlidersHorizontal className="w-4 h-4 text-slate-400" />
+        <h2 className="text-sm font-semibold text-slate-900">Filters</h2>
       </div>
 
       {/* Categories */}
-      <div className="mb-6 pb-6 border-b border-slate-100">
-        <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">
-          Categories
+      <div className="mb-5 pb-5 border-b border-slate-100">
+        <h3 className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
+          Category
         </h3>
-        <div className="space-y-2">
+        <div className="space-y-0.5">
           {categories.map((category) => (
             <label
               key={category}
-              className={`flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer text-sm transition-colors ${
+              className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-md cursor-pointer text-sm transition-colors duration-150 ${
                 selectedCategory === category
-                  ? 'bg-indigo-50 text-indigo-700 font-medium'
+                  ? 'bg-slate-100 text-slate-900 font-medium'
                   : 'text-slate-600 hover:bg-slate-50'
               }`}
             >
@@ -39,7 +38,7 @@ const FilterSidebar = ({
                 value={category}
                 checked={selectedCategory === category}
                 onChange={(e) => onCategoryChange(e.target.value)}
-                className="w-4 h-4 text-indigo-600 border-slate-300 focus:ring-indigo-500"
+                className="w-3.5 h-3.5 text-slate-900 border-slate-300 focus:ring-slate-500 accent-slate-900"
               />
               {category}
             </label>
@@ -48,8 +47,8 @@ const FilterSidebar = ({
       </div>
 
       {/* Price Range */}
-      <div className="mb-6 pb-6 border-b border-slate-100">
-        <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">
+      <div className="mb-5 pb-5 border-b border-slate-100">
+        <h3 className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
           Price Range
         </h3>
         <div className="flex items-center gap-2">
@@ -60,9 +59,9 @@ const FilterSidebar = ({
             onChange={(e) =>
               onPriceRangeChange({ ...priceRange, min: e.target.value })
             }
-            className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+            className="input-base py-1.5 text-[13px]"
           />
-          <span className="text-slate-400 text-sm flex-shrink-0">to</span>
+          <span className="text-slate-300 text-xs flex-shrink-0">–</span>
           <input
             type="number"
             placeholder="Max"
@@ -70,20 +69,20 @@ const FilterSidebar = ({
             onChange={(e) =>
               onPriceRangeChange({ ...priceRange, max: e.target.value })
             }
-            className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+            className="input-base py-1.5 text-[13px]"
           />
         </div>
       </div>
 
       {/* Sort By */}
       <div>
-        <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">
+        <h3 className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
           Sort By
         </h3>
         <select
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value)}
-          className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+          className="input-base py-1.5 text-[13px]"
         >
           <option value="default">Default</option>
           <option value="price-low">Price: Low to High</option>
