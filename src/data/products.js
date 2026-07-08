@@ -44,7 +44,7 @@ export const products = [
     name: 'Desk Lamp',
     price: 39.99,
     category: 'Furniture',
-    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=300&fit=crop',
     stock: 23,
     rating: 4.0,
     sales: 289
@@ -84,7 +84,7 @@ export const products = [
     name: 'USB Cable',
     price: 12.99,
     category: 'Electronics',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1538356111053-748a48e1acb8?w=400&h=300&fit=crop',
     stock: 89,
     rating: 4.4,
     sales: 723
@@ -144,7 +144,7 @@ export const products = [
     name: 'Desk Organizer',
     price: 24.99,
     category: 'Stationery',
-    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop',
     stock: 42,
     rating: 4.2,
     sales: 356

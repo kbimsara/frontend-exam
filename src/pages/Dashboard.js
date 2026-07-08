@@ -124,7 +124,7 @@ const Dashboard = () => {
               return (
                 <div
                   key={index}
-                  className="flex-1 flex flex-col items-center gap-2 group relative"
+                  className="flex-1 flex flex-col items-center justify-end gap-2 group relative h-full"
                 >
                   <span className="absolute -top-7 text-[11px] font-medium text-slate-900 bg-white border border-slate-200 shadow-sm rounded px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none tabular-nums">
                     ${data.sales.toLocaleString()}
@@ -133,7 +133,7 @@ const Dashboard = () => {
                     className="w-full max-w-[40px] bg-slate-800 rounded-t-sm transition-all duration-300 group-hover:bg-slate-900 cursor-pointer"
                     style={{ height: `${heightPercent}%` }}
                   />
-                  <span className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">
+                  <span className="text-[11px] text-slate-400 font-medium uppercase tracking-wider flex-shrink-0">
                     {data.month.slice(0,3)}
                   </span>
                 </div>

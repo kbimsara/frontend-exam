@@ -19,6 +19,7 @@ import {
 const Profile = () => {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
@@ -211,7 +212,10 @@ const Profile = () => {
                         <StatusBadge status={order.status} />
                       </td>
                       <td className="py-3 text-right">
-                        <button className="p-1.5 rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-colors">
+                        <button
+                          onClick={() => setSelectedOrder(order)}
+                          className="p-1.5 rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+                        >
                           <Eye className="w-4 h-4" />
                         </button>
                       </td>
@@ -250,6 +254,51 @@ const Profile = () => {
           </SectionCard>
         </div>
       </div>
+
+      {/* Order Details Modal */}
+      {selectedOrder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+          <div className="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-md overflow-hidden flex flex-col">
+            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+              <h3 className="text-[15px] font-semibold text-slate-900">
+                Order #{selectedOrder.id}
+              </h3>
+              <button
+                onClick={() => setSelectedOrder(null)}
+                className="p-1.5 rounded-md text-slate-400 hover:bg-slate-200 hover:text-slate-900 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="p-5 space-y-4">
+              <div className="flex justify-between items-center text-[13px]">
+                <span className="text-slate-500">Date</span>
+                <span className="font-medium text-slate-900 tabular-nums">{selectedOrder.date}</span>
+              </div>
+              <div className="flex justify-between items-center text-[13px]">
+                <span className="text-slate-500">Status</span>
+                <StatusBadge status={selectedOrder.status} />
+              </div>
+              <div className="flex justify-between items-center text-[13px]">
+                <span className="text-slate-500">Items</span>
+                <span className="font-medium text-slate-900 tabular-nums">{selectedOrder.items}</span>
+              </div>
+              <div className="pt-4 border-t border-slate-100 flex justify-between items-baseline">
+                <span className="text-[13px] font-semibold text-slate-900">Total</span>
+                <span className="text-lg font-bold text-slate-900 tabular-nums tracking-tight">${selectedOrder.total.toFixed(2)}</span>
+              </div>
+            </div>
+            <div className="px-5 py-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+              <button
+                onClick={() => setSelectedOrder(null)}
+                className="btn-secondary py-1.5 px-4 text-[13px]"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </PageLayout>
   );
 };
