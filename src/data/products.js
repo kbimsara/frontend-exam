@@ -4,7 +4,7 @@ export const products = [
     name: 'Laptop Computer',
     price: 899.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Laptop',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop',
     stock: 15,
     rating: 4.5,
     sales: 234
@@ -14,7 +14,7 @@ export const products = [
     name: 'Wireless Mouse',
     price: 29.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Mouse',
+    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop',
     stock: 45,
     rating: 4.2,
     sales: 567
@@ -24,7 +24,7 @@ export const products = [
     name: 'Keyboard',
     price: 49.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Keyboard',
+    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop',
     stock: 32,
     rating: 4.7,
     sales: 423
@@ -34,7 +34,7 @@ export const products = [
     name: 'Office Chair',
     price: 199.99,
     category: 'Furniture',
-    image: 'https://via.placeholder.com/200x200?text=Chair',
+    image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400&h=300&fit=crop',
     stock: 8,
     rating: 4.3,
     sales: 145
@@ -44,7 +44,7 @@ export const products = [
     name: 'Desk Lamp',
     price: 39.99,
     category: 'Furniture',
-    image: 'https://via.placeholder.com/200x200?text=Lamp',
+    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=400&h=300&fit=crop',
     stock: 23,
     rating: 4.0,
     sales: 289
@@ -54,7 +54,7 @@ export const products = [
     name: 'Monitor',
     price: 299.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Monitor',
+    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=300&fit=crop',
     stock: 12,
     rating: 4.8,
     sales: 678
@@ -64,7 +64,7 @@ export const products = [
     name: 'Notebook',
     price: 9.99,
     category: 'Stationery',
-    image: 'https://via.placeholder.com/200x200?text=Notebook',
+    image: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&h=300&fit=crop',
     stock: 100,
     rating: 3.9,
     sales: 891
@@ -74,7 +74,7 @@ export const products = [
     name: 'Pen Set',
     price: 14.99,
     category: 'Stationery',
-    image: 'https://via.placeholder.com/200x200?text=Pen+Set',
+    image: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=400&h=300&fit=crop',
     stock: 67,
     rating: 4.1,
     sales: 456
@@ -84,7 +84,7 @@ export const products = [
     name: 'USB Cable',
     price: 12.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=USB+Cable',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop',
     stock: 89,
     rating: 4.4,
     sales: 723
@@ -94,7 +94,7 @@ export const products = [
     name: 'Water Bottle',
     price: 19.99,
     category: 'Accessories',
-    image: 'https://via.placeholder.com/200x200?text=Water+Bottle',
+    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=300&fit=crop',
     stock: 54,
     rating: 4.6,
     sales: 534
@@ -104,7 +104,7 @@ export const products = [
     name: 'Backpack',
     price: 59.99,
     category: 'Accessories',
-    image: 'https://via.placeholder.com/200x200?text=Backpack',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop',
     stock: 28,
     rating: 4.5,
     sales: 267
@@ -114,7 +114,7 @@ export const products = [
     name: 'Headphones',
     price: 79.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Headphones',
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',
     stock: 19,
     rating: 4.9,
     sales: 845
@@ -124,7 +124,7 @@ export const products = [
     name: 'Smartphone',
     price: 699.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Smartphone',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop',
     stock: 7,
     rating: 4.7,
     sales: 412
@@ -134,7 +134,7 @@ export const products = [
     name: 'Tablet',
     price: 399.99,
     category: 'Electronics',
-    image: 'https://via.placeholder.com/200x200?text=Tablet',
+    image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop',
     stock: 14,
     rating: 4.4,
     sales: 298
@@ -144,7 +144,7 @@ export const products = [
     name: 'Desk Organizer',
     price: 24.99,
     category: 'Stationery',
-    image: 'https://via.placeholder.com/200x200?text=Organizer',
+    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop',
     stock: 42,
     rating: 4.2,
     sales: 356
